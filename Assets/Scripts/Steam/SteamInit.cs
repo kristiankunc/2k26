@@ -2,11 +2,20 @@ using UnityEngine;
 
 public class SteamInit : MonoBehaviour
 {
-	public ISteamWrapper SteamWrapper { get; set; } = new FacepunchSteamWrapper();
+	public ISteamWrapper SteamWrapper { get; set; }
 
 	protected virtual void Awake()
 	{
 		MakePersistent();
+
+		if (SteamWrapper == null)
+		{
+#if !UNITY_EDITOR_LINUX
+			SteamWrapper = new FacepunchSteamWrapper();
+#else
+			SteamWrapper = new StubSteamWrapper();
+#endif
+		}
 
 		try
 		{

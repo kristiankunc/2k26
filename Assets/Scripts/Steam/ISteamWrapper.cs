@@ -6,6 +6,7 @@ public interface ISteamWrapper
 	void Shutdown();
 }
 
+#if !UNITY_EDITOR_LINUX
 public class FacepunchSteamWrapper : ISteamWrapper
 {
 	public bool IsValid => Steamworks.SteamClient.IsValid;
@@ -21,3 +22,14 @@ public class FacepunchSteamWrapper : ISteamWrapper
 		Steamworks.SteamClient.Shutdown();
 	}
 }
+#else
+public class StubSteamWrapper : ISteamWrapper
+{
+	public bool IsValid => false;
+	public string PlayerName => "CI_Player";
+
+	public void Init(uint appId, bool asyncCallbacks) { }
+
+	public void Shutdown() { }
+}
+#endif
