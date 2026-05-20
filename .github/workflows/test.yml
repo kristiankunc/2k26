@@ -64,13 +64,3 @@ jobs:
           artifactsPath: test-results/${{ matrix.testMode }}
           githubToken: ${{ secrets.GITHUB_TOKEN }}
           checkName: Unity ${{ matrix.testMode }} Test Results
-
-      - uses: actions/upload-artifact@v7
-        with:
-          name: Test Results (${{ matrix.testMode }})
-          path: ${{ steps.tests.outputs.artifactsPath }}
-
-      - uses: actions/upload-artifact@v7
-        with:
-          name: Coverage Results (${{ matrix.testMode }})
-          path: ${{ steps.tests.outputs.coveragePath }}
