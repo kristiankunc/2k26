@@ -36,7 +36,6 @@ hooks = [
     { id = "pretty-format-json" },
 ]
 
-# Run CSharpier as a local system command rather than a remote repo
 [[repos]]
 repo = "local"
 hooks = [
