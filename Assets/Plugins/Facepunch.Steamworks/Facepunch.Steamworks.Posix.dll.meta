@@ -35,6 +35,14 @@ PluginImporter:
         DefaultValueInitialized: true
         OS: OSX
   - first:
+      Editor: Editor
+    second:
+      enabled: 1
+      settings:
+        CPU: x86_64
+        DefaultValueInitialized: true
+        OS: Linux
+  - first:
       Facebook: Win
     second:
       enabled: 0
