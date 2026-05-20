@@ -1,0 +1,46 @@
+exclude = '''(?x)^(
+    Library/|
+    Temp/|
+    Obj/|
+    Logs/|
+    MemoryCaptures/|
+    Build/|
+    Builds/|
+    UserSettings/|
+    Packages/|
+    ProjectSettings/|
+    Assets/Plugins/|
+    .*\.meta$|
+    .*\.unity$|
+    .*\.prefab$|
+    .*\.mat$|
+    .*\.anim$|
+    .*\.controller$|
+    .*\.asset$|
+    .*\.inputactions$|
+    .*\.scenetemplate$
+)'''
+
+[[repos]]
+repo = "https://github.com/pre-commit/pre-commit-hooks"
+rev = "v6.0.0"
+hooks = [
+    { id = "check-yaml" },
+    { id = "check-added-large-files" },
+    { id = "check-toml" },
+    { id = "end-of-file-fixer" },
+    { id = "trailing-whitespace" },
+    { id = "mixed-line-ending", args = [
+        "--fix=lf",
+    ] },
+    { id = "pretty-format-json" },
+]
+
+# Run CSharpier as a local system command rather than a remote repo
+[[repos]]
+repo = "local"
+hooks = [
+    { id = "csharpier", name = "CSharpier", entry = "dotnet tool run csharpier format", language = "system", types = [
+        "c#",
+    ], pass_filenames = true },
+]
